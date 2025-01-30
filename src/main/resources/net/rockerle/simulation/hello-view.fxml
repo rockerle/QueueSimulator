@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.layout.HBox?>
+<VBox spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="net.rockerle.simulation.GUIController">
+    <TabPane fx:id="tabPane">
+        <Tab text="Loss" fx:id="lossTab">
+            <VBox>
+                <HBox>
+                    <Button fx:id="lossUpdate" text="Start Simulation" onAction="#lossStart"/>
+                    <!--<Button fx:id="lossStop" text="stop" onAction="#stop" />-->
+                    <Label fx:id="lossError" text="" />
+                </HBox>
+                <GridPane hgap="5">
+                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Calculated Values" />
+                        <Label text="Blocking Rate"/>
+                        <Label fx:id="p_LossC" />
+                        <Label text="Little's Theorem" />
+                        <Label fx:id="littlesT" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <Label text="Simulated Values" />
+                        <Label text="Blocking Rate"/>
+                        <Label fx:id="p_LossS" />
+                        <Label text="Average amount of members in System" />
+                        <Label fx:id="meanMemberLoss" text=""/>
+                    </VBox>
+                </GridPane>
+            </VBox>
+        </Tab>
+        <Tab text="Wait" fx:id="waitTab">
+            <VBox>
+                <HBox>
+                    <Button fx:id="waitUpdate" text="Start Simulation" onAction="#waitStart"/>
+                    <!--<Button fx:id="waitStop" text="stop" onAction="#stop" />-->
+                    <Label fx:id="waitStability" text = "" />
+                </HBox>
+                <GridPane hgap="5">
+                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Calculated Values"/>
+                        <Label text="Erlang-C" />
+                        <Label fx:id="waitC" />
+                        <Label text="N: "/>
+                        <Label fx:id="n_WaitC" text="-"/>
+                        <Label text="N_BE: "/>
+                        <Label fx:id="n_BEWaitC" text="-"/>
+                        <Label text="N_Queue: "/>
+                        <Label fx:id="n_QueueWaitC" text="-"/>
+                        <Label text="T_Queue: "/>
+                        <Label fx:id="t_QueueWaitC" text="-"/>
+                        <Label text="T_OnlyQueue: "/>
+                        <Label fx:id="t_OnlyQueueWaitC" text="-"/>
+                        <Label text="T_BE: "/>
+                        <Label fx:id="t_BEWaitC" text="-"/>
+                        <Label text="T: "/>
+                        <Label fx:id="t_WaitC" text="-"/>
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="Simulated Values"/>
+                        <Label text="Waiting prob" />
+                        <Label fx:id="waitS" />
+                        <Label text="N: "/>
+                        <Label fx:id="nWaitS" text="-"/>
+                        <Label text="N_BE: "/>
+                        <Label fx:id="n_BEWaitS" text="-"/>
+                        <Label text="N_Queue: "/>
+                        <Label fx:id="n_QueueWaitS" text="-"/>
+                        <Label text="T_Queue: "/>
+                        <Label fx:id="t_QueueWaitS" text="-"/>
+                        <Label text="T_OnlyQueue: "/>
+                        <Label fx:id="t_OnlyQueueWaitS" text="-"/>
+                        <Label text="T_BE: "/>
+                        <Label fx:id="t_BEWaitS" text="-"/>
+                        <Label text="T: "/>
+                        <Label fx:id="tWaitS" text="-"/>
+                    </VBox>
+                </GridPane>
+            </VBox>
+        </Tab>
+        <Tab text="Limited Waiting Queue" fx:id="hybridTab">
+            <VBox>
+                <HBox alignment="CENTER">
+                    <Button fx:id="hybridUpdate" text="Start Simulation" onAction="#hybStart"/>
+                    <!--<Button fx:id="hybridStop" text="stop" onAction="#stop" />-->
+                    <Label fx:id="hybridError" text = "" />
+                </HBox>
+                <GridPane hgap="5">
+                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Simulated Amounts"/>
+                        <Label text="N: " />
+                        <Label fx:id="hybridN" />
+                        <Label text="N_Queue: "/>
+                        <Label fx:id="hybridN_Queue" text="-"/>
+                        <Label text="N_BE: "/>
+                        <Label fx:id="hybridN_BE" text="-"/>
+                        <Label text="Blocking Probability" />
+                        <Label fx:id="hybrid_Blocking" text=" " />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="T: "/>
+                        <Label fx:id="hybrid_T" text="-"/>
+                        <Label text="T_Queue: "/>
+                        <Label fx:id="hybrid_TQueue" text="-"/>
+                        <Label text="T_OnlyQueue: "/>
+                        <Label fx:id="hybrid_TOnlyQueue" text="-"/>
+                        <Label text="T_BE: "/>
+                        <Label fx:id="hybrid_TBE" text="-"/>
+                    </VBox>
+                </GridPane>
+            </VBox>
+        </Tab>
+    </TabPane>
+    <GridPane hgap="5" vgap="3">
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="Queue Size"/>
+            <TextField fx:id="l"/>
+            <Label text="Number of Workstations"/>
+            <TextField fx:id="n"/>
+            <Label text="Mean Arrival Time"/>
+            <TextField fx:id="lambda"/>
+            <Label text="Mean Service Time"/>
+            <TextField fx:id="my"/>
+            <Label text="Accuracy"/>
+            <TextField fx:id="accuracy"/>
+        </VBox>
+        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label text="Measurements" />
+            <Label text="N: avg number of members in system" />
+            <Label text="N_Queue: avg number of members in waiting queue" />
+            <Label text="N_BE: avg number of busy workstations" />
+            <Label text="T: avg time spend in the whole system" />
+            <Label text="T_Queue: avg time spend in waiting queue (over all requests)" />
+            <Label text="T_BE: avg operating time" />
+            <Label text="T_OnlyQueue: avg waiting time of requests that end in waiting queue" />
+        </VBox>
+    </GridPane>
+</VBox>
